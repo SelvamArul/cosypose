@@ -7,7 +7,7 @@ The 3D models were converted from meters to millimeters and the centers of their
 We additionally provide 50K PBR training images that were generated for the BOP Challenge 2020. 
 And also considered 002_master_chef_can and 040_large_marker as symmetric.
 
-### models_bop-compat: (introduced my cosypose)
+### models_bop-compat: (introduced by cosypose)
 In the BOP format, the YCB objects 002_master_chef_can and 040_large_marker are considered symmetric, but not by previous works such as PoseCNN, PVNet and DeepIM. To ensure a fair comparison (using ADD instead of ADD-S for ADD-(S) for these objects), these objects must not be considered symmetric in the evaluation. To keep the uniformity of the models format, we generate a set of YCB objects models_bop-compat_eval that can be used to fairly compare our approach against previous works. You can download them directly:
 
 
