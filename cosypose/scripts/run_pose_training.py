@@ -121,6 +121,27 @@ def make_cfg(args):
             cfg.run_id_pretrain = 'ycbv-refiner-syntonly--596719'
         else:
             raise ValueError(args.config)
+    
+    elif 'synpick' in args.config:
+        cfg.urdf_ds_name = 'ycbv'
+        cfg.object_ds_name = 'ycbv.bop-compat'
+        cfg.train_ds_names = [('synpick.train.synt', 1)]
+        cfg.val_ds_names = [('synpick.train.synt', 1)]
+        cfg.test_ds_names = []
+        cfg.input_resize = (480, 640)
+
+        if args.config == 'synpick-refiner-syntonly':
+            # FIXME we don't need to train this again.
+            cfg.TCO_input_generator = 'gt+noise'
+            cfg.train_ds_names = [('synthetic.ycbv-1M.train', 1)]
+            raise ValueError(args.config)
+
+        elif args.config == 'synpick-refiner-finetune':
+            cfg.TCO_input_generator = 'gt+noise'
+            cfg.run_id_pretrain = 'refiner-bop-ycbv-synt+real--631598' # we initialize with CosyPose BOP final models
+        else:
+            raise ValueError(args.config)
+
 
     elif 'tless-' in args.config:
         cfg.urdf_ds_name = 'tless.cad'
