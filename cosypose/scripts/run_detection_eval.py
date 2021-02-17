@@ -186,7 +186,10 @@ def main():
     cfg.n_frames = None
     cfg.skip_evaluation = False
     cfg.skip_model_predictions = args.skip_predictions
-    cfg.external_predictions = True
+    # cfg.external_predictions = True CosyPose paper uses PoseCNN predictions in the paper
+    # To evaluate detections on Synpick dataset, disable external predictions
+    cfg.external_predictions = False
+    
     cfg.detector = None
     if args.debug:
         cfg.n_frames = 10
@@ -194,6 +197,8 @@ def main():
     if args.config == 'bop':
         # ds_names = ['ycbv.bop19', 'tless.bop19']
         ds_names = ['itodd.val', 'hb.val']
+    elif args.config == 'synpick':
+        ds_names = ['synpick.test.synt']
     else:
         raise ValueError
 
@@ -201,11 +206,14 @@ def main():
         'ycbv.bop19': 'ycbv--377940',
         'hb.val': 'detector-bop-hb--497808',
         'itodd.val': 'detector-bop-itodd--509908',
+        'synpick.test.synt': 'detector-bop-ycbv-synt+real--292971' # specify the detector to be evaluated
     }
 
     if args.id < 0:
         n_rand = np.random.randint(1e6)
         args.id = n_rand
+
+    RESULTS_DIR = Path('local_data/results')
     save_dir = RESULTS_DIR / f'{args.config}-{args.models}-{args.comment}-{args.id}'
     logger.info(f'Save dir: {save_dir}')
 

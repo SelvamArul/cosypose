@@ -69,9 +69,16 @@ def make_scene_dataset(ds_name, n_frames=None):
             ids.append(np.where(mask)[0].item())
         ds.frame_index = frame_index.iloc[ids].reset_index(drop=True)
     
+    # synpick
     elif ds_name == 'synpick.train.synt':
         ds_dir = BOP_DS_DIR / 'synpick'
         ds = BOPDataset(ds_dir, split='train_synt')
+    elif ds_name == 'synpick.val.synt':
+        ds_dir = BOP_DS_DIR / 'synpick'
+        ds = BOPDataset(ds_dir, split='val_synt')
+    elif ds_name == 'synpick.test.synt':
+        ds_dir = BOP_DS_DIR / 'synpick'
+        ds = BOPDataset(ds_dir, split='test_synt')
 
     # BOP challenge
     elif ds_name == 'hb.bop19':
