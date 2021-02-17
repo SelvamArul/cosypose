@@ -20,6 +20,7 @@ def _make_tless_dataset(split):
 
 
 def keep_bop19(ds):
+    print ("reading file", (ds.ds_dir / 'test_targets_bop19.json') )
     targets = pd.read_json(ds.ds_dir / 'test_targets_bop19.json')
     targets = remap_bop_targets(targets)
     targets = targets.loc[:, ['scene_id', 'view_id']].drop_duplicates()
@@ -67,6 +68,10 @@ def make_scene_dataset(ds_name, n_frames=None):
             mask = (frame_index['scene_id'] == scene_id) & (frame_index['view_id'] == view_id)
             ids.append(np.where(mask)[0].item())
         ds.frame_index = frame_index.iloc[ids].reset_index(drop=True)
+    
+    elif ds_name == 'synpick.train.synt':
+        ds_dir = BOP_DS_DIR / 'synpick'
+        ds = BOPDataset(ds_dir, split='train_synt')
 
     # BOP challenge
     elif ds_name == 'hb.bop19':

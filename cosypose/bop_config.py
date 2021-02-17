@@ -71,6 +71,18 @@ BOP_CONFIG['ycbv'] = dict(
     train_synt_real_ds_names=[('ycbv.pbr', 20), ('ycbv.train.synt', 1), ('ycbv.train.real', 3)]
 )
 
+
+BOP_CONFIG['synpick'] = dict(
+    input_resize=(640, 480),
+    urdf_ds_name='synpick',
+    obj_ds_name='synpick.bop', # FIXME
+    train_pbr_ds_name='',
+    train_pbr_real_ds_names='',
+    inference_ds_name='', # TODO
+    test_ds_name='', # TODO
+    train_synt_real_ds_names=[('synpick.train.synt', 1)] # just one type of dataset
+)
+
 PBR_DETECTORS = dict(
     hb='detector-bop-hb-pbr--497808',
     icbin='detector-bop-icbin-pbr--947409',
@@ -105,18 +117,21 @@ SYNT_REAL_DETECTORS = dict(
     tudl='detector-bop-tudl-synt+real--298779',
     tless='detector-bop-tless-synt+real--452847',
     ycbv='detector-bop-ycbv-synt+real--292971',
+    synpick='detector-bop-ycbv-synt+real--292971',
 )
 
 SYNT_REAL_COARSE = dict(
     tudl='coarse-bop-tudl-synt+real--610074',
     tless='coarse-bop-tless-synt+real--160982',
     ycbv='coarse-bop-ycbv-synt+real--822463',
+    synpick='coarse-bop-ycbv-synt+real--822463',
 )
 
 SYNT_REAL_REFINER = dict(
     tudl='refiner-bop-tudl-synt+real--423239',
     tless='refiner-bop-tless-synt+real--881314',
     ycbv='refiner-bop-ycbv-synt+real--631598',
+    synpick='refiner-bop-ycbv-synt+real--631598',
 )
 
 

@@ -55,7 +55,7 @@ if __name__ == '__main__':
     cfg.pretrain_coco = True
 
     # Training
-    cfg.batch_size = 2
+    cfg.batch_size = 10
     cfg.epoch_size = 5000
     cfg.n_epochs = 600
     cfg.lr_epoch_decay = 200
@@ -81,6 +81,8 @@ if __name__ == '__main__':
         cfg.input_resize = (480, 640)
     elif 'bop-' in args.config:
         cfg.input_resize = None
+    elif 'synpick' in args.config:
+        cfg.input_resize = (480, 640)
     else:
         raise ValueError
 
@@ -100,6 +102,21 @@ if __name__ == '__main__':
         cfg.input_resize = bop_cfg['input_resize']
         if len(bop_cfg['test_ds_name']) > 0:
             cfg.test_ds_names = bop_cfg['test_ds_name']
+    elif 'synpick' in args.config:
+        from cosypose.bop_config import BOP_CONFIG
+        from cosypose.bop_config import SYNT_REAL_DETECTORS
+        bop_name, train_type = args.config.split('-')
+        bop_cfg = BOP_CONFIG[bop_name]
+        if train_type == 'synt':
+            cfg.train_ds_names = bop_cfg['train_synt_real_ds_names']
+            cfg.run_id_pretrain = SYNT_REAL_DETECTORS[bop_name] # FIXME
+        else:
+            raise ValueError
+        cfg.val_ds_names = cfg.train_ds_names
+        cfg.input_resize = bop_cfg['input_resize']
+        if len(bop_cfg['test_ds_name']) > 0:
+            cfg.test_ds_names = bop_cfg['test_ds_name']
+
 
     else:
         raise ValueError(args.config)
