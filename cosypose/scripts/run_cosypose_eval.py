@@ -157,12 +157,20 @@ def get_pose_meters(scene_ds):
         targets_filename = None
         n_top = 1
         spheres_overlap_check = False
+    elif 'synpick' in ds_name:
+        compute_add = True
+        visib_gt_min = -1
+        targets_filename = None
+        n_top = 1
+        spheres_overlap_check = False    
     else:
         raise ValueError
 
     if 'tless' in ds_name:
         object_ds_name = 'tless.eval'
     elif 'ycbv' in ds_name:
+        object_ds_name = 'ycbv.bop-compat.eval'  # This is important for definition of symmetric objects
+    elif 'synpick' in ds_name:
         object_ds_name = 'ycbv.bop-compat.eval'  # This is important for definition of symmetric objects
     else:
         raise ValueError
@@ -297,6 +305,11 @@ def main():
         refiner_run_id = 'ycbv-refiner-finetune--251020'
         n_coarse_iterations = 0
         n_refiner_iterations = 2
+    elif 'synpick' in args.config:
+        object_set = 'synpick'
+        refiner_run_id = 'synpick-refiner-finetune--10468'
+        n_coarse_iterations = 0
+        n_refiner_iterations = 2
     else:
         raise ValueError(args.config)
 
@@ -307,6 +320,8 @@ def main():
         ds_name = 'tless.primesense.test.bop19'
     elif args.config == 'ycbv':
         ds_name = 'ycbv.test.keyframes'
+    elif args.config == 'synpick':
+        ds_name = 'synpick.test.synt'
     else:
         raise ValueError(args.config)
 

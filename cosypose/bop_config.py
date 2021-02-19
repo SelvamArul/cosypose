@@ -74,11 +74,11 @@ BOP_CONFIG['ycbv'] = dict(
 
 BOP_CONFIG['synpick'] = dict(
     input_resize=(640, 480),
-    urdf_ds_name='synpick',
-    obj_ds_name='synpick.bop', # FIXME
-    train_pbr_ds_name='',
-    train_pbr_real_ds_names='',
-    inference_ds_name='', # TODO
+    urdf_ds_name='ycbv', # Reusse ycbv models
+    obj_ds_name='ycbv.bop', # Reusse ycbv models
+    # train_pbr_ds_name='',
+    # train_pbr_real_ds_names='',
+    inference_ds_name=[('synpick.train.synt')], # TODO
     test_ds_name='', # TODO
     train_synt_real_ds_names=[('synpick.train.synt', 1)] # just one type of dataset
 )
@@ -153,3 +153,16 @@ SYNT_REAL_INFERENCE_ID = 'bop-synt+real--815712'
 SYNT_REAL_ICP_INFERENCE_ID = 'bop-synt+real-icp--121351'
 SYNT_REAL_4VIEWS_INFERENCE_ID = 'bop-synt+real-nviews=4--419066'
 SYNT_REAL_8VIEWS_INFERENCE_ID = 'bop-synt+real-nviews=8--763684'
+
+
+SYNPICK_REAL_DETECTORS = dict(
+    synpick='detector-synpick-synt--35428',
+)
+
+SYNPICK_REAL_COARSE = dict(
+    synpick='coarse-bop-ycbv-synt+real--822463', #'coarse-bop-ycbv-synt+real--822463' --> models from CosyPose trained on synt data
+)
+
+SYNPICK_REAL_REFINER = dict(
+    synpick='synpick-refiner-finetune--10468', # refined on synpick
+)

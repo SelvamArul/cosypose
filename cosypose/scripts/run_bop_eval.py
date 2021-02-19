@@ -21,7 +21,7 @@ def main():
     parser.add_argument('--vivo', action='store_true')
     args = parser.parse_args()
     n_rand = np.random.randint(1e6)
-    csv_path = LOCAL_DATA_DIR / 'bop_predictions_csv' / f'cosypose{n_rand}-eccv2020_tless-test-primesense.csv'
+    csv_path = LOCAL_DATA_DIR / 'bop_predictions_csv' / f'synpick{n_rand}-iros2021_synpick-test-synt.csv'
     csv_path.parent.mkdir(exist_ok=True)
     results_path = RESULTS_DIR / args.result_id / 'results.pth.tar'
     convert_results(results_path, csv_path, method=args.method)
@@ -66,7 +66,8 @@ def run_evaluation(filename, is_vivo):
     print(script_path)
     subprocess.call(['python', script_path.as_posix(),
                      '--renderer_type', 'python',
-                     '--result_filename', filename],
+                     '--result_filename', filename,
+                     '--targets_filename', 'wrong_targets_bop19.json'],
                     env=myenv, cwd=BOP_TOOLKIT_DIR.as_posix())
 
 

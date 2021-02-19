@@ -206,7 +206,7 @@ def main():
         'ycbv.bop19': 'ycbv--377940',
         'hb.val': 'detector-bop-hb--497808',
         'itodd.val': 'detector-bop-itodd--509908',
-        'synpick.test.synt': 'detector-bop-ycbv-synt+real--292971' # specify the detector to be evaluated
+        'synpick.test.synt':  'detector-synpick-synt--35428' # specify the detector to be evaluated. CosyPose BOP model 'detector-bop-ycbv-synt+real--292971'
     }
 
     if args.id < 0:
