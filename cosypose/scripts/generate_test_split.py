@@ -15,7 +15,7 @@ if __name__ == '__main__':
     parser.add_argument('dataset_path', type=str, help='an integer for the accumulator')
     args = parser.parse_args()
     DATASET_PATH = Path(args.dataset_path)
-    sets = ['pick', 'move']
+    sets = ['pick3', 'move3']
 
     for s in sets:
         move_split(DATASET_PATH / f'train_{s}',  DATASET_PATH / f'test_{s}')

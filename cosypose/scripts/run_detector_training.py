@@ -28,6 +28,8 @@ if __name__ == '__main__':
     N_CPUS = int(os.environ.get('N_CPUS', 10))
     N_GPUS = int(os.environ.get('N_PROCS', 1))
     N_WORKERS = min(N_CPUS - 2, 8)
+
+    N_WORKERS = 0
     N_RAND = np.random.randint(1e6)
     cfg.n_gpus = N_GPUS
 
@@ -55,7 +57,7 @@ if __name__ == '__main__':
     cfg.pretrain_coco = True
 
     # Training
-    cfg.batch_size = 10
+    cfg.batch_size = 8
     cfg.epoch_size = 5000
     cfg.n_epochs = 600
     cfg.lr_epoch_decay = 200
@@ -105,13 +107,12 @@ if __name__ == '__main__':
     elif 'synpick' in args.config:
         from cosypose.bop_config import BOP_CONFIG
         from cosypose.bop_config import SYNT_REAL_DETECTORS
-        bop_name, train_type = args.config.split('-')
+        bop_name = args.config
         bop_cfg = BOP_CONFIG[bop_name]
-        if train_type == 'synt':
-            cfg.train_ds_names = bop_cfg['train_synt_real_ds_names']
-            cfg.run_id_pretrain = SYNT_REAL_DETECTORS[bop_name] # FIXME
-        else:
-            raise ValueError
+        
+        cfg.train_ds_names = bop_cfg['train_synt_real_ds_names']
+        cfg.run_id_pretrain = SYNT_REAL_DETECTORS[bop_name] # FIXME
+        
         cfg.val_ds_names = cfg.train_ds_names
         cfg.input_resize = bop_cfg['input_resize']
         if len(bop_cfg['test_ds_name']) > 0:

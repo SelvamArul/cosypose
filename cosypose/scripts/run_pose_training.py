@@ -125,9 +125,9 @@ def make_cfg(args):
     elif 'synpick' in args.config:
         cfg.urdf_ds_name = 'ycbv'
         cfg.object_ds_name = 'ycbv.bop-compat'
-        cfg.train_ds_names = [('synpick.train.synt', 1)]
-        cfg.val_ds_names = [('synpick.train.synt', 1)]
-        cfg.test_ds_names = []
+        cfg.train_ds_names = [('synpick.train.pick3', 1), ('synpick.train.move3', 1)]
+        cfg.val_ds_names = [('synpick.train.pick3', 1), ('synpick.train.move3', 1)]
+        cfg.test_ds_names = [('synpick.test.pick3', 1), ('synpick.test.move3', 1)]
         cfg.input_resize = (480, 640)
 
         if args.config == 'synpick-refiner-syntonly':

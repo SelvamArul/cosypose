@@ -20,6 +20,9 @@ DASK_LOGS_DIR = LOCAL_DATA_DIR / 'dasklogs'
 SYNT_DS_DIR = LOCAL_DATA_DIR / 'synt_datasets'
 BOP_DS_DIR = LOCAL_DATA_DIR / 'bop_datasets'
 
+# BC4
+BOP_DS_DIR = Path('/home/cache')
+
 BOP_TOOLKIT_DIR = PROJECT_DIR / 'deps' / 'bop_toolkit_cosypose'
 BOP_CHALLENGE_TOOLKIT_DIR = PROJECT_DIR / 'deps' / 'bop_toolkit_challenge'
 

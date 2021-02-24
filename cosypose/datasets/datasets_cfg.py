@@ -79,6 +79,23 @@ def make_scene_dataset(ds_name, n_frames=None):
     elif ds_name == 'synpick.test.synt':
         ds_dir = BOP_DS_DIR / 'synpick'
         ds = BOPDataset(ds_dir, split='test_synt')
+    
+     # synpick train2/test2 on BC4
+    elif ds_name == 'synpick.train.pick3':
+        ds_dir = BOP_DS_DIR / 'synpick'
+        ds = BOPDataset(ds_dir, split='train_pick3')
+    elif ds_name == 'synpick.train.move3':
+        ds_dir = BOP_DS_DIR / 'synpick'
+        ds = BOPDataset(ds_dir, split='train_move3')
+    # elif ds_name == 'synpick.val.synt':
+    #     ds_dir = BOP_DS_DIR / 'synpick'
+    #     ds = BOPDataset(ds_dir, split='val2')
+    elif ds_name == 'synpick.test.pick3':
+        ds_dir = BOP_DS_DIR / 'synpick'
+        ds = BOPDataset(ds_dir, split='test_pick3')
+    elif ds_name == 'synpick.test.move3':
+        ds_dir = BOP_DS_DIR / 'synpick'
+        ds = BOPDataset(ds_dir, split='test_move3')
 
     # BOP challenge
     elif ds_name == 'hb.bop19':

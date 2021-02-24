@@ -167,14 +167,14 @@ def train_detector(args):
                                num_workers=args.n_dataloader_workers,
                                collate_fn=collate_fn,
                                drop_last=False, pin_memory=True)
-    ds_iter_train = MultiEpochDataLoader(ds_iter_train)
+    # ds_iter_train = MultiEpochDataLoader(ds_iter_train)
 
     val_sampler = PartialSampler(ds_val, epoch_size=int(0.1 * args.epoch_size))
     ds_iter_val = DataLoader(ds_val, sampler=val_sampler, batch_size=args.batch_size,
                              num_workers=args.n_dataloader_workers,
                              collate_fn=collate_fn,
                              drop_last=False, pin_memory=True)
-    ds_iter_val = MultiEpochDataLoader(ds_iter_val)
+    # ds_iter_val = MultiEpochDataLoader(ds_iter_val)
 
     model = create_model_detector(cfg=args,
                                   n_classes=len(args.label_to_category_id)).cuda()

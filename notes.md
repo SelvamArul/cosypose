@@ -38,13 +38,57 @@ TRAINING_IMAGES= synt (only synt exists)
 CUDA_VISIBLE_DEVICES=2 python -m cosypose.scripts.run_detector_training --config synpick-synt
 ```
 
-### pose coarse:
+### pose coarse: 
+NOTE: This step is not needed.
 ```
-python -m cosypose.scripts.run_pose_training --config ycbv-refiner-syntonly
+python -m cosypose.scripts.run_pose_training --config synpick-refiner-syntonly
 ```
 
 
 ### pose refiner:
 ```
-python -m cosypose.scripts.run_pose_training --config ycbv-refiner-finetune
+python -m cosypose.scripts.run_pose_training --config synpick-refiner-finetune
 ```
+
+### eval detection:
+```
+CUDA_VISIBLE_DEVICES=1 python -m cosypose.scripts.run_detection_eval --config synpick
+```
+
+
+### /run inference (detection + pose estimation)
+NOTE: This dumps the prediction. 
+run eval_pose to compute evaluation metrics
+
+```
+python -m cosypose.scripts.run_synpick_inference --config synpick
+```
+
+
+### bob eval
+```
+python -m cosypose.scripts.run_bop_eval --result_id synpick--204648/dataset=synpick --method maskrcnn_detections/refiner/iteration=4
+```
+
+#### TODO:
+inst_count
+bop/cosypose modes: how do we define symmetry?
+
+dict_keys(['maskrcnn_detections/coarse/iteration=1', 'maskrcnn_detections/refiner/iteration=1', 'maskrcnn_detections/refiner/iteration=2', 'maskrcnn_detections/refiner/iteration=3', 'maskrcnn_detections/refiner/iteration=4', 'maskrcnn_detections/detections'])
+
+
+
+
+
+
+
+### FIXME:
+/home/user/periyasa/workspace/cosypose/deps/bop_toolkit_cosypose/bop_toolkit_lib/dataset_params.py
+
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/llvm/lib"
+export COSYPOSE_DIR=/home/user/periyasa/workspace/cosypose
+export PYTHONPATH="/home/user/periyasa/workspace/cosypose/deps/bop_toolkit_cosypose/bop_toolkit_lib:$PYTHONPATH"
+
+cd /home/user/periyasa/workspace/cosypose/deps/bop_toolkit_cosypose
+python scripts/calc_gt_info.py

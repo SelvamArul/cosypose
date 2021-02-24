@@ -164,7 +164,7 @@ class CropResizeToAspectAugmentation:
             x1, y1, x2, y2 = x0-w/2, y0-h/2, x0+w/2, y0+h/2
             box = torch.tensor([x1, y1, x2, y2])
             images, masks, K = crop_to_aspect_ratio(images, box, masks=masks, K=K)
-
+        
         # Resize to target size
         x0, y0 = images.shape[-1] / 2, images.shape[-2] / 2
         h_input, w_input = images.shape[-2], images.shape[-1]
@@ -180,6 +180,13 @@ class CropResizeToAspectAugmentation:
 
         # Update the bounding box annotations
         dets_gt = make_detections_from_segmentation(masks)[0]
+
+        objects_clean = []
+        for x in obs['objects']:
+            if x['id_in_segm'] in dets_gt:
+                objects_clean.append(x)
+        obs['objects'] = objects_clean
+
         for n, obj in enumerate(obs['objects']):
             if 'bbox' in obj:
                 assert 'id_in_segm' in obj

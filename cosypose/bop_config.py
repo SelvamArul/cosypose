@@ -74,13 +74,13 @@ BOP_CONFIG['ycbv'] = dict(
 
 BOP_CONFIG['synpick'] = dict(
     input_resize=(640, 480),
-    urdf_ds_name='ycbv', # Reusse ycbv models
-    obj_ds_name='ycbv.bop', # Reusse ycbv models
+    urdf_ds_name='ycbv', # Reuse ycbv models
+    obj_ds_name='ycbv.bop', # Reuse ycbv models
     # train_pbr_ds_name='',
     # train_pbr_real_ds_names='',
-    inference_ds_name=[('synpick.train.synt')], # TODO
+    inference_ds_name=[('synpick.test.pick3', 'synpick.test.move3')], # TODO
     test_ds_name='', # TODO
-    train_synt_real_ds_names=[('synpick.train.synt', 1)] # just one type of dataset
+    train_synt_real_ds_names=[('synpick.train.pick3', 1), ('synpick.train.move3', 1)]
 )
 
 PBR_DETECTORS = dict(
@@ -155,6 +155,11 @@ SYNT_REAL_4VIEWS_INFERENCE_ID = 'bop-synt+real-nviews=4--419066'
 SYNT_REAL_8VIEWS_INFERENCE_ID = 'bop-synt+real-nviews=8--763684'
 
 
+
+
+
+###################################### SYNPICK INFERENCE PARAMS ############################################
+# used by  scripts/run_synpick_inference.py
 SYNPICK_REAL_DETECTORS = dict(
     synpick='detector-synpick-synt--35428',
 )
@@ -166,3 +171,4 @@ SYNPICK_REAL_COARSE = dict(
 SYNPICK_REAL_REFINER = dict(
     synpick='synpick-refiner-finetune--10468', # refined on synpick
 )
+###################################### SYNPICK INFERENCE PARAMS ############################################

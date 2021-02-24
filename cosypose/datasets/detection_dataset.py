@@ -45,10 +45,15 @@ class DetectionDataset(torch.utils.data.Dataset):
         return len(self.scene_ds)
 
     def get_data(self, idx):
+        
         rgb, mask, state = self.scene_ds[idx]
-
-        rgb, mask, state = self.resize_augmentation(rgb, mask, state)
-
+        try:
+            rgb, mask, state = self.resize_augmentation(rgb, mask, state)
+        except Exception as e:
+            print ('Exception ', e)
+            import ipdb; ipdb.set_trace()
+            print (' ')
+            rgb, mask, state = self.resize_augmentation(rgb, mask, state)
         if self.background_augmentation:
             rgb, mask, state = self.background_augmentations(rgb, mask, state)
 
@@ -61,6 +66,7 @@ class DetectionDataset(torch.utils.data.Dataset):
         categories = torch.tensor([self.label_to_category_id[obj['name']] for obj in state['objects']])
         obj_ids = np.array([obj['id_in_segm'] for obj in state['objects']])
         boxes = np.array([torch.as_tensor(obj['bbox']).tolist() for obj in state['objects']])
+
         boxes = torch.as_tensor(boxes, dtype=torch.float32).view(-1, 4)
         area = torch.as_tensor((boxes[:, 3] - boxes[:, 1]) * (boxes[:, 2] - boxes[:, 0]))
         mask = np.array(mask)

@@ -255,7 +255,7 @@ def train_pose(args):
 
     model = create_model_pose(cfg=args, renderer=renderer, mesh_db=mesh_db).cuda()
 
-    eval_bundle = make_eval_bundle(args, model)
+    # eval_bundle = make_eval_bundle(args, model)
 
     if args.resume_run_id:
         resume_dir = EXP_DIR / args.resume_run_id
@@ -345,18 +345,18 @@ def train_pose(args):
                 loss = h(data=sample, meters=meters_val)
                 meters_val['loss_total'].add(loss.item())
 
-        @torch.no_grad()
-        def test():
-            model.eval()
-            return run_eval(eval_bundle, epoch=epoch)
+        # @torch.no_grad()
+        # def test():
+        #     model.eval()
+        #     return run_eval(eval_bundle, epoch=epoch)
 
         train_epoch()
         if epoch % args.val_epoch_interval == 0:
             validation()
 
         test_dict = None
-        if epoch % args.test_epoch_interval == 0:
-            test_dict = test()
+        # if epoch % args.test_epoch_interval == 0:
+        #     test_dict = test()
 
         log_dict = dict()
         log_dict.update({
