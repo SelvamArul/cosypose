@@ -92,3 +92,76 @@ export PYTHONPATH="/home/user/periyasa/workspace/cosypose/deps/bop_toolkit_cosyp
 
 cd /home/user/periyasa/workspace/cosypose/deps/bop_toolkit_cosypose
 python scripts/calc_gt_info.py
+
+
+
+2/24|23:59:13: Stats of the GT poses in dataset synpick train_pick3:
+2/24|23:59:13: Number of images: 137544
+2/24|23:59:13: Min dist: 868.6736945935694
+2/24|23:59:13: Max dist: 16698948.167696632
+2/24|23:59:14: Mean dist: 29852.629430207104
+2/24|23:59:14: Min azimuth: 4.014204902193323e-06
+2/24|23:59:14: Max azimuth: 359.9964916182079
+2/24|23:59:14: Mean azimuth: 180.46470984288263
+2/24|23:59:14: Min elev: -89.9135444119782
+2/24|23:59:14: Max elev: 89.78777712170138
+2/24|23:59:14: Mean elev: 5.541990926224736
+2/24|23:59:14: Min visib fract: 0.0
+2/24|23:59:14: Max visib fract: 1.0
+2/24|23:59:15: Mean visib fract: 0.7703705662944904
+
+2/25|00:02:16: Stats of the GT poses in dataset synpick train_move3:
+2/25|00:02:16: Number of images: 99786
+2/25|00:02:16: Min dist: 324.410927622508
+2/25|00:02:16: Max dist: 4073655.093346596
+2/25|00:02:16: Mean dist: 13735.305617782544
+2/25|00:02:16: Min azimuth: 9.874140325681819e-06
+2/25|00:02:16: Max azimuth: 359.9995037625184
+2/25|00:02:17: Mean azimuth: 182.89217073014143
+2/25|00:02:17: Min elev: -89.96415886086689
+2/25|00:02:17: Max elev: 89.9556063870164
+2/25|00:02:17: Mean elev: 1.6919064921861708
+2/25|00:02:17: Min visib fract: 0.0
+2/25|00:02:17: Max visib fract: 1.0
+2/25|00:02:18: Mean visib fract: 0.6716037680618062
+
+2/25|00:03:24: Stats of the GT poses in dataset synpick test_pick3:
+2/25|00:03:24: Number of images: 31119
+2/25|00:03:24: Min dist: 704.2609024895527
+2/25|00:03:24: Max dist: 947621.8396044557
+2/25|00:03:24: Mean dist: 2947.167611621648
+2/25|00:03:24: Min azimuth: 0.026413138582290184
+2/25|00:03:24: Max azimuth: 359.9983664310087
+2/25|00:03:24: Mean azimuth: 176.47497654501058
+2/25|00:03:24: Min elev: -89.53399399448799
+2/25|00:03:24: Max elev: 89.75405912543539
+2/25|00:03:24: Mean elev: 4.862434858724094
+2/25|00:03:24: Min visib fract: 0.0
+2/25|00:03:24: Max visib fract: 1.0
+2/25|00:03:24: Mean visib fract: 0.7679706383677912
+
+2/25|00:04:12: Stats of the GT poses in dataset synpick test_move3:
+2/25|00:04:12: Number of images: 23910
+2/25|00:04:12: Min dist: 1727.6299393046022
+2/25|00:04:12: Max dist: 1341398.0684206423
+2/25|00:04:12: Mean dist: 5064.485960255823
+2/25|00:04:12: Min azimuth: 3.2679603770354496e-06
+2/25|00:04:12: Max azimuth: 359.99686468974585
+2/25|00:04:12: Mean azimuth: 177.93448096636342
+2/25|00:04:12: Min elev: -89.9431589331172
+2/25|00:04:12: Max elev: 89.92830700212497
+2/25|00:04:12: Mean elev: -0.23963156633373994
+2/25|00:04:12: Min visib fract: 0.0
+2/25|00:04:12: Max visib fract: 1.0
+2/25|00:04:12: Mean visib fract: 0.6899879899296152
+
+
+
+
+
+
+
+
+
+cosypose training detector without pick_bad split: detector-synpick--745328
+cosypose training pose without pick_bad split: synpick-refiner-finetune--666878
