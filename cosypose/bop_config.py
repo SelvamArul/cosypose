@@ -78,9 +78,10 @@ BOP_CONFIG['synpick'] = dict(
     obj_ds_name='ycbv.bop', # Reuse ycbv models
     # train_pbr_ds_name='',
     # train_pbr_real_ds_names='',
-    inference_ds_name=[('synpick.test.pick3', 'synpick.test.move3')], # TODO
+    inference_ds_name=[('synpick.test.pick3', 'synpick.test.move3', 'synpick.test.pick_bad')], # TODO
     test_ds_name='', # TODO
-    train_synt_real_ds_names=[('synpick.train.pick3', 1), ('synpick.train.move3', 1)]
+    val_ds_names=[('synpick.test.pick3', 1), ('synpick.test.move3', 1), ('synpick.test.pick_bad', 1)], # NOT used as a real validation set. Just here for generating predictions
+    train_synt_real_ds_names=[('synpick.train.pick3', 1), ('synpick.train.move3', 1), ('synpick.train.pick_bad', 1)]
 )
 
 PBR_DETECTORS = dict(
@@ -117,7 +118,8 @@ SYNT_REAL_DETECTORS = dict(
     tudl='detector-bop-tudl-synt+real--298779',
     tless='detector-bop-tless-synt+real--452847',
     ycbv='detector-bop-ycbv-synt+real--292971',
-    synpick='detector-bop-ycbv-synt+real--292971',
+    # synpick='detector-bop-ycbv-synt+real--292971',  <--- cosypose models
+    synpick='detector-synpick--745328', # <--- synpick without pick_bad split
 )
 
 SYNT_REAL_COARSE = dict(
@@ -131,7 +133,9 @@ SYNT_REAL_REFINER = dict(
     tudl='refiner-bop-tudl-synt+real--423239',
     tless='refiner-bop-tless-synt+real--881314',
     ycbv='refiner-bop-ycbv-synt+real--631598',
-    synpick='refiner-bop-ycbv-synt+real--631598',
+    # synpick='refiner-bop-ycbv-synt+real--631598',  <--- cosypose models
+    synpick='synpick-refiner-finetune--666878', # <--- synpick without pick_bad split
+
 )
 
 

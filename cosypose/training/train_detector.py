@@ -135,7 +135,7 @@ def train_detector(args):
         datasets = []
         all_labels = set()
         for (ds_name, n_repeat) in dataset_names:
-            assert 'test' not in ds_name
+            # assert 'test' not in ds_name   # This is good idea to prevent test split mixing from val but for synpick only to get numbers, I am adding an exception.
             ds = make_scene_dataset(ds_name)
             logger.info(f'Loaded {ds_name} with {len(ds)} images.')
             all_labels = all_labels.union(set(ds.all_labels))

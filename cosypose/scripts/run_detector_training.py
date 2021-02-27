@@ -38,7 +38,7 @@ if __name__ == '__main__':
     # Data
     cfg.train_ds_names = []
     cfg.val_ds_names = cfg.train_ds_names
-    cfg.val_epoch_interval = 10
+    cfg.val_epoch_interval = 2
     cfg.test_ds_names = []
     cfg.test_epoch_interval = 30
     cfg.n_test_frames = None
@@ -113,7 +113,7 @@ if __name__ == '__main__':
         cfg.train_ds_names = bop_cfg['train_synt_real_ds_names']
         cfg.run_id_pretrain = SYNT_REAL_DETECTORS[bop_name] # FIXME
         
-        cfg.val_ds_names = cfg.train_ds_names
+        cfg.val_ds_names = bop_cfg['val_ds_names']
         cfg.input_resize = bop_cfg['input_resize']
         if len(bop_cfg['test_ds_name']) > 0:
             cfg.test_ds_names = bop_cfg['test_ds_name']
@@ -121,7 +121,7 @@ if __name__ == '__main__':
 
     else:
         raise ValueError(args.config)
-    cfg.val_ds_names = cfg.train_ds_names
+    # cfg.val_ds_names = cfg.train_ds_names
 
     if args.no_eval:
         cfg.test_ds_names = []
